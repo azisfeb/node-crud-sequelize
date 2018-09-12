@@ -47,6 +47,7 @@ module.exports = {
              .save()
              .then((user) => {
                  if(user){
+                    req.flash('success', '<li>Add data successfully</li>')
                     res.redirect('/users')
                  }
              })
@@ -87,6 +88,7 @@ module.exports = {
                 )
                 .then((user) =>{
                     if(user){
+                        req.flash('success', '<li>Update data successfully</li>')
                         res.redirect('/users')
                     }
                 })
@@ -102,6 +104,7 @@ module.exports = {
                 )
                 .then((user) =>{
                     if(user){
+                        req.flash('success', '<li>Update data successfully</li>')
                         res.redirect('/users')
                     }
                 })
@@ -118,5 +121,43 @@ module.exports = {
             req.flash('error', error_msg)
             res.redirect('/users/'+ req.params.id +'/edit')
         }
+    },
+
+    activate: (req, res) => {
+        var id = req.params.id
+        models.User
+        .update(
+            {state: 1},
+            {where:{id:id}}
+        )
+        .then((user) => {
+            if(user){
+                req.flash('success', '<li>User has been activated</li>')
+                res.redirect('/users')
+            }
+        })
+        .catch((err) => {
+            req.flash('error', err)
+            res.redirect('/users')
+        })
+    },
+
+    deactivate: (req, res) => {
+        var id = req.params.id
+        models.User
+        .update(
+            {state: 0},
+            {where: {id: id}}
+        )
+        .then((user) => {
+            if(user){
+                req.flash('success', '<li>User has been In-active</li>')
+                res.redirect('/users')
+            }
+        })
+        .catch((err) => {
+            req.flash('error', err)
+            res.redirect('/users')
+        })
     }
 }

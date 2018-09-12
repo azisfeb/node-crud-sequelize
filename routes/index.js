@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-const {signIn} = require('../controller/authController');
+const {signIn, signOut} = require('../controller/authController');
 const {isAuth} = require('../middleware/auth');
 var users = require('./users')
 
@@ -10,6 +10,7 @@ router.get('/login', function(req, res, next){
 });
 
 router.post('/signin', signIn);
+router.get('/logout', isAuth, signOut)
 router.get('/', isAuth, function(req, res, next){
   res.render('index', { title: "Main"})
 });
