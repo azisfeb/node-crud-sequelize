@@ -9,7 +9,6 @@ var flash            = require('express-flash');
 var session          = require('express-session');
 
 var index            = require('./routes/index');
-
 var app              = express();
 
 // view engine setup

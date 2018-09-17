@@ -39,7 +39,7 @@
                 <td>{{ article.title }}</td>
                 <td>{{ article.content }}</td>
                 <td>
-                    <form action="/article/delete" method="POST">
+                    <form action="/article/{{article.id}}/delete" method="POST">
                         <a href="/article/{{article.id}}/edit" class="btn btn-info btn-sm">Edit</a>
                         <input type="hidden" id="id" name="id" value="{{article.id}}">
                         <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('do you want to delete this data?')">Delete</button>

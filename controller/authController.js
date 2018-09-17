@@ -25,7 +25,7 @@ module.exports = {
                     if(checkLogin){
                        session.username = user.username
                        session.password = user.password
-                       session.token = jwt.sign({user: user.username, password: user.password}, CONFIG.jwt_encryption)
+                       session.token = jwt.sign({id: user.id, user: user.username, password: user.password}, CONFIG.jwt_encryption)
                        
                        res.redirect('/')
                     } else {
